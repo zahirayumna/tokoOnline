@@ -22,7 +22,7 @@ class CustomerController extends Controller
     public function callback() 
     { 
         try {
-            $socialUser = Socialite::driver('google')->user(); 
+            $socialUser = Socialite::driver('google')->stateless()->user(); 
             // Cek apakah email sudah terdaftar 
             $registeredUser = User::where('email', $socialUser->email)->first(); 
  

@@ -13,14 +13,12 @@ class IsCustomer
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+    public function handle(Request $request, Closure $next): Response
+    {
 
-    public function handle(Request $request, Closure $next): Response 
-    { 
         if (auth()->check() && auth()->user()->role == 2) { 
             return $next($request); 
-
         } 
-        return redirect('/auth/redirect')->with('msgError', 'Anda harus login sebagai 
-customer'); 
-    } 
+        return redirect('/auth/redirect')->with('msgError', 'Anda harus login sebagai customer');
+    }
 }

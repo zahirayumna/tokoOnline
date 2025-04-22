@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\OrderController;
 // use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
@@ -69,5 +70,19 @@ Route::resource('backend/customer', CustomerController::class, ['as' => 'backend
 Route::get('backend/customer/{id}/detail', [CustomerController::class, 'show'])->name('backend.customer.show');
 
 // menampilkan data customer bagian fe
-Route::get('/customer/akun/{id}', [CustomerController::class, 'akun'])->name('customer.akun')->middleware('is.customer');
-Route::put('/customer/akun/{id}/update', [CustomerController::class, 'updateAkun'])->name('customer.akun.update')->middleware('is.customer');
+// Route::get('/customer/akun/{id}', [CustomerController::class, 'akun'])->name('customer.akun')->middleware('is.customer');
+// Route::put('/customer/akun/{id}/update', [CustomerController::class, 'updateAkun'])->name('customer.akun.update')->middleware('is.customer');
+
+//Group route untuk customer 
+Route::middleware('is.customer')->group(function () { 
+    // Route untuk menampilkan halaman akun customer 
+    Route::get('/customer/akun/{id}', [CustomerController::class, 'akun'])->name('customer.akun'); 
+ 
+    // Route untuk mengupdate data akun customer 
+    Route::put('/customer/akun/{id}/update', [CustomerController::class, 'updateAkun']) 
+        ->name('customer.akun.update'); 
+ 
+    // Route untuk menambahkan produk ke keranjang 
+    Route::post('add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('order.addToCart'); 
+    Route::get('cart', [OrderController::class, 'viewCart'])->name('order.cart'); 
+});

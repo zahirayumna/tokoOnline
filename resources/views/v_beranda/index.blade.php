@@ -31,9 +31,9 @@
                             <a href="{{ route('produk.detail', $row->id) }}" title="Detail Produk">
                                 <button class="main-btn icon-btn"><i class="fa fa-search"></i></button>
                             </a>
-                            <form action="3" method="post" style-"display: inline-block;" title="Pesan ke Aplikasi">
+                            <form action="{{ route('order.addToCart', $row->id) }}" method="post" style="display: inline-block;" title="Pesan ke Aplikasi">
                             @csrf
-                            <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart" type="submit"></i> Pesan</button>
+                            <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart" type="submit"></i> Pesan</button>
 
                             </form>
                         </div>
