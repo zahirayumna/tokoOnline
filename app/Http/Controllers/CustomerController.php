@@ -85,9 +85,11 @@ class CustomerController extends Controller
         // Cek apakah ID yang diberikan sama dengan ID customer yang sedang login 
         if ($id != $loggedInCustomerId) { 
             // Redirect atau tampilkan pesan error 
-            return redirect()->route('customer.akun', ['id' => $loggedInCustomerId])->with('msgError', 'Anda tidak berhak mengakses akun ini.'); 
+        return redirect()->route('customer.akun', ['id' => $loggedInCustomerId])->with('msgError', 'Anda tidak berhak mengakses akun ini.'); 
         } 
-        $customer = Customer::where('user_id', $id)->firstOrFail(); 
+        $customer = Customer::where('user_id', $id)
+        ->join('user', 'user.id', '=', 'customer.user_id')
+        ->firstOrFail(); 
         return view('v_customer.edit', [ 
             'judul' => 'Customer', 
             'subJudul' => 'Akun Customer', 
@@ -131,8 +133,8 @@ class CustomerController extends Controller
             } 
             $file = $request->file('foto'); 
             $extension = $file->getClientOriginalExtension(); 
-            $originalFileName = date('YmdHis') . '_' . uniqid() . '.' . $extension; 
-            $directory = 'storage/img-customer/'; 
+            $originalFileName = date(format: 'YmdHis') . '_' . uniqid() . '.' . $extension; 
+            $directory = 'image/img-customer/'; 
             // Simpan gambar dengan ukuran yang ditentukan 
             ImageHelper::uploadAndResize($file, $directory, $originalFileName, 385, 400); 
             // Simpan nama file asli di database 

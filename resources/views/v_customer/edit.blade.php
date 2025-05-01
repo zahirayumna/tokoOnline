@@ -36,10 +36,10 @@
                         <label>Foto</label> 
                             {{-- view image --}} 
                             @if ($edit->foto) 
-                            <img src="{{ asset('storage/img-customer/' . $edit->user->foto) }}" class="foto-preview" width="100%"> 
+                            <img src="{{ asset('image/img-customer/' . $edit->user->foto) }}" class="foto-preview" width="100%"> 
                             <p></p> 
                             @else 
-                            <img src="{{ asset('storage/img-user/img-default.jpg') }}" class="foto-preview" width="100%"> 
+                            <img src="{{ asset('image/img-customer/img-default.jpg') }}" class="foto-preview" width="100%"> 
                             <p></p> 
                             @endif 
                             {{-- file foto --}} 
