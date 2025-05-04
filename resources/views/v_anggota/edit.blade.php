@@ -3,7 +3,8 @@
     @method('put')
     @csrf
     <label>Nama</label><br>
-    <input type="text" name="nama" id="" value="{{ old('nama', $edit->nama) }}" placeholder="Masukkan Nama Lengkap" class="form-control @error('nama') is-invalid @enderror">
+    <input type="text" name="nama" id="" value="{{ old('nama', $edit->nama) }}"
+        placeholder="Masukkan Nama Lengkap" class="form-control @error('nama') is-invalid @enderror">
     @error('nama')
         <span class="invalid-feedback alert-danger" role="alert">
             {{ $message }}

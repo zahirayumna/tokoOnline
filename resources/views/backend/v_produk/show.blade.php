@@ -11,13 +11,11 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Kategori</label>
-                                    <select name="kategori_id"
-                                        class="form-control
-@error('kategori_id') is-invalid @enderror" disabled>
+                                    <select name="kategori_id" class="form-control
+                                            @error('kategori_id') is-invalid @enderror" disabled>
                                         <option value="" selected> - Pilih Kategori - </option>
                                         @foreach ($kategori as $row)
-                                            <option value="{{ $row->id }}"
-                                                {{ old('kategori_id', $show->kategori_id) == $row->id ? 'selected' : '' }}>
+                                            <option value="{{ $row->id }}" {{ old('kategori_id', $show->kategori_id) == $row->id ? 'selected' : '' }}>
                                                 {{ $row->nama_kategori }}
                                             </option>
                                         @endforeach
@@ -42,7 +40,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Detail</label>
-                                    <textarea name="detail" class="form-control @error('detail') is-invalid @enderror" id="ckeditor" disabled>{{ old('detail', $show->detail) }}</textarea>
+                                    <textarea name="detail" class="form-control @error('detail') is-invalid @enderror"
+                                        id="ckeditor" disabled>{{ old('detail', $show->detail) }}</textarea>
                                     @error('detail')
                                         <span class="invalid-feedback alert-danger" role="alert">
                                             {{ $message }}
@@ -61,7 +60,7 @@
                                     <div class="row">
                                         @foreach ($show->fotoProduk as $gambar)
                                             <div class="col-md-8">
-                                                <img src="{{ asset('storage/img-produk/' . $gambar->foto) }}"width="100%">
+                                                <img src="{{ asset('storage/img-produk/' . $gambar->foto) }}" width="100%">
                                             </div>
                                             <div class="col-md-4">
                                                 <form action="{{ route('backend.foto_produk.destroy', $gambar->id) }}"
@@ -94,10 +93,10 @@
 @endsection
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const fotoContainer = document.getElementById('foto-container');
         const addFotoButton = document.querySelector('.add-foto');
-        addFotoButton.addEventListener('click', function() {
+        addFotoButton.addEventListener('click', function () {
             const fotoRow = document.createElement('div');
             fotoRow.classList.add('form-group', 'row');
             fotoRow.innerHTML = `

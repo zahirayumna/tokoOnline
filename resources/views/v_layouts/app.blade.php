@@ -32,9 +32,9 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
 </head>
 
@@ -79,42 +79,46 @@
                             </a>
                         </li>
                         <!-- /Cart -->
-                          
-                    @if (Auth::check()) 
-                    <!-- Account --> 
-                    <li class="header-account dropdown default-dropdown"> 
-                        <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true"> 
-                            <div class="header-btns-icon"> 
-                                <i class="fa fa-user-o"></i> 
-                            </div> 
-                            <strong class="text-uppercase">{{ Auth::user()->nama }}<i 
-                                    class="fa fa-caret-down"></i></strong> 
-                        </div> 
-                        <ul class="custom-menu"> 
-                            <li><a href="{{ route('customer.akun', ['id' => Auth::user()->id]) }}"><i class="fa fa-user-o"></i>Akun Saya</a></li>  
-                            <li><a href="#"><i class="fa fa-check"></i> History</a></li> 
-                            <li> 
-                                <a href="#" onclick="event.preventDefault(); document.getElementById('keluar-app').submit();"><i class="fa fa-power-off"></i> Keluar </a> 
-                                <!-- form keluar app --> 
-                                <form id="keluar-app" action="{{ route('customer.logout') }}" method="POST" class="d-none"> 
-                                    @csrf 
-                                </form> 
-                                <!-- form keluar app end --> 
-                            </li> 
-                        </ul> 
-                    </li> 
-                    @else 
-                    <li class="header-account dropdown default-dropdown"> 
-                        <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true"> 
-                            <div class="header-btns-icon"> 
-                                <i class="fa fa-user-o"></i> 
-                            </div> 
-                            <strong class="text-uppercase">Akun Saya<i class="fa fa-caret-down"></i></strong> 
-                        </div> 
-                        <a href="{{ route('auth.redirect') }}" class="text-uppercase">Login</a> 
-                    </li> 
-                    <!-- /Account --> 
-                    @endif 
+
+                        @if (Auth::check())
+                            <!-- Account -->
+                            <li class="header-account dropdown default-dropdown">
+                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-user-o"></i>
+                                    </div>
+                                    <strong class="text-uppercase">{{ Auth::user()->nama }}<i
+                                            class="fa fa-caret-down"></i></strong>
+                                </div>
+                                <ul class="custom-menu">
+                                    <li><a href="{{ route('customer.akun', ['id' => Auth::user()->id]) }}"><i
+                                                class="fa fa-user-o"></i>Akun Saya</a></li>
+                                    <li><a href="#"><i class="fa fa-check"></i> History</a></li>
+                                    <li>
+                                        <a href="#"
+                                            onclick="event.preventDefault(); document.getElementById('keluar-app').submit();"><i
+                                                class="fa fa-power-off"></i> Keluar </a>
+                                        <!-- form keluar app -->
+                                        <form id="keluar-app" action="{{ route('customer.logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                        <!-- form keluar app end -->
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <li class="header-account dropdown default-dropdown">
+                                <div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="header-btns-icon">
+                                        <i class="fa fa-user-o"></i>
+                                    </div>
+                                    <strong class="text-uppercase">Akun Saya<i class="fa fa-caret-down"></i></strong>
+                                </div>
+                                <a href="{{ route('auth.redirect') }}" class="text-uppercase">Login</a>
+                            </li>
+                            <!-- /Account -->
+                        @endif
 
                         <!-- Mobile nav toggle-->
                         <li class="nav-toggle">
@@ -135,32 +139,34 @@
         <!-- container -->
         <div class="container">
             <div id="responsive-nav">
-            @php 
-            $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get(); 
-            @endphp 
-            @if (request()->segment(1) == '' || request()->segment(1) == 'beranda') 
-            <!-- category nav --> 
-            <div class="category-nav"> 
-                <span class="category-header">Kategori <i class="fa fa-list"></i></span> 
-                <ul class="category-list"> 
-                    @foreach ($kategori as $row) 
-                    <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a></li> 
-                    @endforeach 
-                </ul> 
- 
-                <ul class="category-list"></ul>
-            </div> 
-            @else 
-            <div class="category-nav show-on-click"> 
-                <span class="category-header">Kategori <i class="fa fa-list"></i></span> 
-                <ul class="category-list"> 
-                    @foreach ($kategori as $row) 
-                        <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a></li> 
-                    @endforeach 
-                </ul> 
-            </div> 
-            <!-- /category nav --> 
-            @endif 
+                @php
+                    $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get();
+                @endphp
+                @if (request()->segment(1) == '' || request()->segment(1) == 'beranda')
+                    <!-- category nav -->
+                    <div class="category-nav">
+                        <span class="category-header">Kategori <i class="fa fa-list"></i></span>
+                        <ul class="category-list">
+                            @foreach ($kategori as $row)
+                                <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <ul class="category-list"></ul>
+                    </div>
+                @else
+                    <div class="category-nav show-on-click">
+                        <span class="category-header">Kategori <i class="fa fa-list"></i></span>
+                        <ul class="category-list">
+                            @foreach ($kategori as $row)
+                                <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <!-- /category nav -->
+                @endif
 
                 <!-- menu nav -->
                 <div class="menu-nav">
@@ -179,53 +185,54 @@
     </div>
     <!-- /NAVIGATION -->
 
-    @if (request()->segment(1) == '' || request()->segment(1) == 'beranda') 
-    <!-- HOME -->
-    <div id="home">
-        <!-- container -->
-        <div class="container">
-            <!-- home wrap -->
-            <div class="home-wrap">
-                <!-- home slick -->
-                <div id="home-slick">
-                    <!-- banner -->
-                    <div class="banner banner-1">
-                        <img src="{{ asset('frontend/banner/img_slide01.jpg') }}" alt="">
-                        <div class="banner-caption text-center">
-                            <h1>Jajanan Tradisional</h1>
-                            <h3 class="font-weak" style="color: 30323a;">Khas Makanan Indonesia</h3>
-                            <button class="primary-btn">Pesan Sekarang</button>
+    @if (request()->segment(1) == '' || request()->segment(1) == 'beranda')
+        <!-- HOME -->
+        <div id="home">
+            <!-- container -->
+            <div class="container">
+                <!-- home wrap -->
+                <div class="home-wrap">
+                    <!-- home slick -->
+                    <div id="home-slick">
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="{{ asset('frontend/banner/img_slide01.jpg') }}" alt="">
+                            <div class="banner-caption text-center">
+                                <h1>Jajanan Tradisional</h1>
+                                <h3 class="font-weak" style="color: 30323a;">Khas Makanan Indonesia</h3>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /banner -->
+                        <!-- /banner -->
 
-                    <!-- banner -->
-                    <div class="banner banner-1">
-                        <img src="{{ asset('frontend/banner/img_slide02.jpg') }}" alt="">
-                        <div class="banner-caption">
-                            <h1 class="primary-color">Khas Makanan Indonesia<br><span class="white-color font-weak">Jajanan Tradisional</span></h1>
-                            <button class="primary-btn">Pesan Sekarang</button>
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="{{ asset('frontend/banner/img_slide02.jpg') }}" alt="">
+                            <div class="banner-caption">
+                                <h1 class="primary-color">Khas Makanan Indonesia<br><span
+                                        class="white-color font-weak">Jajanan Tradisional</span></h1>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
                         </div>
-                    </div>
-                    <!-- /banner -->
+                        <!-- /banner -->
 
-                    <!-- banner -->
-                    <div class="banner banner-1">
-                        <img src="{{ asset('frontend/banner/img_slide03.jpg') }}" alt="">
-                        <div class="banner-caption">
-                            <h1 style="color: f8694a;">Khas Makanan <span>Indonesia</span></h1>
-                            <button class="primary-btn">Pesan Sekarang</button>
+                        <!-- banner -->
+                        <div class="banner banner-1">
+                            <img src="{{ asset('frontend/banner/img_slide03.jpg') }}" alt="">
+                            <div class="banner-caption">
+                                <h1 style="color: f8694a;">Khas Makanan <span>Indonesia</span></h1>
+                                <button class="primary-btn">Pesan Sekarang</button>
+                            </div>
                         </div>
+                        <!-- /banner -->
                     </div>
-                    <!-- /banner -->
+                    <!-- /home slick -->
                 </div>
-                <!-- /home slick -->
+                <!-- /home wrap -->
             </div>
-            <!-- /home wrap -->
+            <!-- /container -->
         </div>
-        <!-- /container -->
-    </div>
-    <!-- /HOME -->
+        <!-- /HOME -->
     @endif
 
     <!-- section -->
@@ -283,7 +290,8 @@
                         <h3 class="aside-title">Filter by Kategori</h3>
                         <ul class="list-links">
                             @foreach ($kategori as $row)
-                            <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori}}</a></li>
+                                <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -329,7 +337,8 @@
                         </div>
                         <!-- /footer logo -->
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna</p>
 
                         <!-- footer social -->
                         <ul class="footer-social">
@@ -398,9 +407,12 @@
                     <!-- footer copyright -->
                     <div class="footer-copyright">
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
+                        Copyright &copy;
+                        <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </script> All rights reserved | This template is made with <i
+                            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                            target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                     <!-- /footer copyright -->

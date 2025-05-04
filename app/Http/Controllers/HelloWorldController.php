@@ -7,10 +7,10 @@ class HelloWorldController extends Controller
 {
     public function index()
     {
-        return 
-   
-        "Selamat Belajar framework laravel 10"
-        
+        return
+
+            "Selamat Belajar framework laravel 10"
+
         ;
     }
     public function ambilfile()

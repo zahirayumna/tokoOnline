@@ -15,9 +15,8 @@
                                     <div class="form-group">
                                         <label>Foto</label>
                                         <img class="foto-preview">
-                                        <input type="file" name="foto"
-                                            class="form-control
-@error('foto') is-invalid @enderror"
+                                        <input type="file" name="foto" class="form-control
+                                                                @error('foto') is-invalid @enderror"
                                             onchange="previewFoto()">
                                         @error('foto')
                                             <div class="invalid-feedback alert-danger">{{ $message }}</div>
@@ -55,7 +54,8 @@
                                     <div class="form-group">
                                         <label>Detail</label><br>
                                         <textarea name="detail" class="form-control
-@error('detail') is-invalid @enderror" id="ckeditor">{{ old('detail') }}</textarea>
+                                                                @error('detail') is-invalid @enderror"
+                                            id="ckeditor">{{ old('detail') }}</textarea>
                                         @error('detail')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}
@@ -65,10 +65,9 @@
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <input type="text" onkeypress="return
-hanyaAngka(event)" name="harga"
-                                            value="{{ old('harga') }}"
+                                                                hanyaAngka(event)" name="harga" value="{{ old('harga') }}"
                                             class="form-control
-@error('harga') is-invalid @enderror"
+                                                                @error('harga') is-invalid @enderror"
                                             placeholder="Masukkan Harga Produk">
                                         @error('harga')
                                             <span class="invalid-feedback alert-danger" role="alert">
@@ -79,10 +78,9 @@ hanyaAngka(event)" name="harga"
                                     <div class="form-group">
                                         <label>Berat</label>
                                         <input type="text" onkeypress="return
-hanyaAngka(event)" name="berat"
-                                            value="{{ old('berat') }}"
+                                                                hanyaAngka(event)" name="berat" value="{{ old('berat') }}"
                                             class="form-control
-@error('berat') is-invalid @enderror"
+                                                                @error('berat') is-invalid @enderror"
                                             placeholder="Masukkan Berat Produk">
                                         @error('berat')
                                             <span class="invalid-feedback alert-danger" role="alert">
@@ -93,11 +91,9 @@ hanyaAngka(event)" name="berat"
                                     <div class="form-group">
                                         <label>Stok</label>
                                         <input type="text" onkeypress="return
-hanyaAngka(event)" name="stok"
-                                            value="{{ old('stok') }}"
+                                                                hanyaAngka(event)" name="stok" value="{{ old('stok') }}"
                                             class="form-control @error('stok')
-is-invalid @enderror"
-                                            placeholder="Masukkan Stok Produk">
+                                            is-invalid @enderror" placeholder="Masukkan Stok Produk">
                                         @error('stok')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}

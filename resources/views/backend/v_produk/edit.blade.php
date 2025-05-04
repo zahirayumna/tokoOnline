@@ -26,10 +26,8 @@
                                             <p></p>
                                         @endif
                                         {{-- file foto --}}
-                                        <input type="file" name="foto"
-                                            class="form-control
-@error('foto') is-invalid @enderror"
-                                            onchange="previewFoto()">
+                                        <input type="file" name="foto" class="form-control
+                                                @error('foto') is-invalid @enderror" onchange="previewFoto()">
                                         @error('foto')
                                             <div class="invalid-feedback alert-danger">{{ $message }}</div>
                                         @enderror
@@ -39,15 +37,12 @@
                                     <div class="form-group">
                                         <label>Status</label>
                                         <select name="status" class="form-control
-@error('status') is-invalid @enderror">
-                                            <option value=""
-                                                {{ old('status', $edit->status) == '' ? 'selected' : '' }}> -
+                                                @error('status') is-invalid @enderror">
+                                            <option value="" {{ old('status', $edit->status) == '' ? 'selected' : '' }}> -
                                                 Pilih Status -</option>
-                                            <option value="1"
-                                                {{ old('status', $edit->status) == '1' ? 'selected' : '' }}>
+                                            <option value="1" {{ old('status', $edit->status) == '1' ? 'selected' : '' }}>
                                                 Public</option>
-                                            <option value="0"
-                                                {{ old('status', $edit->status) == '0' ? 'selected' : '' }}>
+                                            <option value="0" {{ old('status', $edit->status) == '0' ? 'selected' : '' }}>
                                                 Blok</option>
                                         </select>
                                         @error('status')
@@ -58,9 +53,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label>Kategori</label>
-                                        <select name="kategori_id"
-                                            class="form-control
-@error('kategori_id') is-invalid @enderror">
+                                        <select name="kategori_id" class="form-control
+                                                @error('kategori_id') is-invalid @enderror">
                                             <option value="" selected> - Pilih Katagori -
                                             </option>
                                             @foreach ($kategori as $row)
@@ -93,7 +87,8 @@
                                     <div class="form-group">
                                         <label>Detail</label><br>
                                         <textarea name="detail" class="form-control
-@error('detail') is-invalid @enderror" id="ckeditor">{{ old('detail', $edit->detail) }}</textarea>
+                                                @error('detail') is-invalid @enderror"
+                                            id="ckeditor">{{ old('detail', $edit->detail) }}</textarea>
                                         @error('detail')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}
@@ -103,11 +98,9 @@
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <input type="text" onkeypress="return
-hanyaAngka(event)" name="harga"
-                                            value="{{ old('harga', $edit->harga) }}"
+                                                hanyaAngka(event)" name="harga" value="{{ old('harga', $edit->harga) }}"
                                             class="form-control
-@error('harga') is-invalid @enderror"
-                                            placeholder="Masukkan Harga Produk">
+                                                @error('harga') is-invalid @enderror" placeholder="Masukkan Harga Produk">
                                         @error('harga')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}
@@ -116,10 +109,9 @@ hanyaAngka(event)" name="harga"
                                     </div>
                                     <div class="form-group">
                                         <label>Berat</label>
-                                        <input type="text" onkeypress="return
-hanyaAngka(event)" name="berat"
+                                        <input type="text" onkeypress="return hanyaAngka(event)" name="berat"
                                             value="{{ old('berat', $edit->berat) }}"
-                                            class="formcontrol @error('berat') is-invalid @enderror"
+                                            class="form-control @error('berat') is-invalid @enderror"
                                             placeholder="Masukkan Berat Produk">
                                         @error('berat')
                                             <span class="invalid-feedback alert-danger" role="alert">
@@ -129,12 +121,9 @@ hanyaAngka(event)" name="berat"
                                     </div>
                                     <div class="form-group">
                                         <label>Stok</label>
-                                        <input type="text" onkeypress="return
-hanyaAngka(event)" name="stok"
-                                            value="{{ old('stok', $edit->stok) }}"
-                                            class="form-control
-@error('stok') is-invalid @enderror"
-                                            placeholder="Masukkan Stok Produk">
+                                        <input type="text" onkeypress="return hanyaAngka(event)" name="stok"
+                                            value="{{ old('stok', $edit->stok) }}" class="form-control
+                                                @error('stok') is-invalid @enderror" placeholder="Masukkan Stok Produk">
                                         @error('stok')
                                             <span class="invalid-feedback alert-danger" role="alert">
                                                 {{ $message }}

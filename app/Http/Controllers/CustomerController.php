@@ -126,7 +126,7 @@ class CustomerController extends Controller
         if ($request->file('foto')) { 
             //hapus gambar lama 
             if ($customer->user->foto) { 
-                $oldImagePath = public_path('storage/img-customer/') . $customer->user->foto; 
+                $oldImagePath = public_path('storage/img-user/') . $customer->user->foto; 
                 if (file_exists($oldImagePath)) { 
                     unlink($oldImagePath); 
                 } 
@@ -134,7 +134,7 @@ class CustomerController extends Controller
             $file = $request->file('foto'); 
             $extension = $file->getClientOriginalExtension(); 
             $originalFileName = date(format: 'YmdHis') . '_' . uniqid() . '.' . $extension; 
-            $directory = 'image/img-customer/'; 
+            $directory = 'storage/img-user/'; 
             // Simpan gambar dengan ukuran yang ditentukan 
             ImageHelper::uploadAndResize($file, $directory, $originalFileName, 385, 400); 
             // Simpan nama file asli di database 

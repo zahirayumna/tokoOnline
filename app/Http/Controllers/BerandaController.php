@@ -7,12 +7,12 @@ use App\Models\Produk;
 
 class BerandaController extends Controller
 {
-    
+
     public function berandaBackend()
     {
         return view('backend.v_beranda.index', [
-        'judul' => 'Beranda',
-        'sub' => 'Halaman Beranda'
+            'judul' => 'Beranda',
+            'sub' => 'Halaman Beranda'
         ]);
     }
 

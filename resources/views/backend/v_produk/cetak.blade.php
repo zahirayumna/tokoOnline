@@ -16,7 +16,7 @@
     }
 </style>
 <table>
-     {{-- <tr>
+    {{-- <tr>
     <td align="center">
     <img src="{{ asset('images/header.png') }}" width="50%">
     </td>

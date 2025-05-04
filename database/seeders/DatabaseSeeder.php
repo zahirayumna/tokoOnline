@@ -37,12 +37,12 @@ class DatabaseSeeder extends Seeder
         ]);
         #untuk record berikutnya silahkan, beri nilai berbeda pada nilai: nama, email, hp dengan nilai masing-masing anggota kelompok
     User::create([
-        'nama' => 'Sopian Aji',
-        'email' => 'sopian4ji@gmail.com',
+        'nama' => 'Seo Jintae',
+        'email' => 'seojintae@gmail.com',
         'role' => '0',
         'status' => 1,
         'hp' => '081234567892',
-        'password' => bcrypt('P@55word'),
+        'password' => bcrypt('s3ojintae'),
         ]);
         #data kategori
 Kategori::create([

@@ -13,11 +13,11 @@ class AnggotaController extends Controller
      */
     public function index()
     {
-    $anggota = Anggota::orderBy('id', 'desc')->get();
-    return view('v_anggota.index', [
-    'judul' => 'Data Anggota',
-    'index' => $anggota
-    ]);
+        $anggota = Anggota::orderBy('id', 'desc')->get();
+        return view('v_anggota.index', [
+            'judul' => 'Data Anggota',
+            'index' => $anggota
+        ]);
     }
     /**
 
@@ -26,11 +26,11 @@ class AnggotaController extends Controller
      */
     public function create()
     {
-    return view('v_anggota.create', [
-    'judul' => 'Tambah Anggota'
-    ]);
+        return view('v_anggota.create', [
+            'judul' => 'Tambah Anggota'
+        ]);
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -42,13 +42,13 @@ class AnggotaController extends Controller
         // atau untuk lebih banyak informasi debugging
         // ddd($request);
         $validatedData = $request->validate([
-        'nama' => 'required|max:255',
-        'hp' => 'required|min:10|max:13',
+            'nama' => 'required|max:255',
+            'hp' => 'required|min:10|max:13',
         ]);
         Anggota::create($validatedData);
         return redirect('/anggota');
 
-        
+
 
     }
 
@@ -67,10 +67,10 @@ class AnggotaController extends Controller
     {
         $anggota = Anggota::find($id);
         return view('v_anggota.edit', [
-        'judul' => 'Ubah Anggota',
-        'edit' => $anggota
+            'judul' => 'Ubah Anggota',
+            'edit' => $anggota
         ]);
-        
+
     }
 
     /**
@@ -81,11 +81,11 @@ class AnggotaController extends Controller
         $rules = [
             'nama' => 'required|max:100',
             'hp' => 'required|min:10|max:13',
-            ];
-            $validatedData = $request->validate($rules);
-            Anggota::where('id', $id)->update($validatedData);
-            return redirect('/anggota');
-            
+        ];
+        $validatedData = $request->validate($rules);
+        Anggota::where('id', $id)->update($validatedData);
+        return redirect('/anggota');
+
     }
 
     /**
@@ -94,7 +94,7 @@ class AnggotaController extends Controller
     public function destroy(string $id)
     {
         $anggota = Anggota::findOrFail($id);
-$anggota->delete();
-return redirect('/anggota');
+        $anggota->delete();
+        return redirect('/anggota');
     }
 }
