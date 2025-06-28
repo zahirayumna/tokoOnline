@@ -89,7 +89,6 @@ Route::middleware('is.customer')->group(function () {
     Route::post('cart/update/{id}', [OrderController::class, 'updateCart'])->name('order.updateCart');
     Route::post('remove/{id}', [OrderController::class, 'removeFromCart'])->name('order.remove');
 
-
     // Ongkir
     Route::post('select-shipping', [OrderController::class, 'selectShipping'])->name('order.selectShipping');
     Route::get('provinces', [OrderController::class, 'getProvinces']);
