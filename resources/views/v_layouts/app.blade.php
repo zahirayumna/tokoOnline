@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -35,6 +36,11 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" 
+        data-client-key="{{ config('midtrans.client_key') }}"> 
+    </script> 
+
 
 </head>
 
@@ -71,7 +77,7 @@
                     <ul class="header-btns">
                         <!-- Cart -->
                         <li class="header-cart dropdown default-dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <a href="{{ route('order.cart') }}">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
                                 </div>
@@ -93,7 +99,7 @@
                                 <ul class="custom-menu">
                                     <li><a href="{{ route('customer.akun', ['id' => Auth::user()->id]) }}"><i
                                                 class="fa fa-user-o"></i>Akun Saya</a></li>
-                                    <li><a href="#"><i class="fa fa-check"></i> History</a></li>
+                                    <li><a href="{{ route('order.history') }}"><i class="fa fa-check"></i> History</a></li>
                                     <li>
                                         <a href="#"
                                             onclick="event.preventDefault(); document.getElementById('keluar-app').submit();"><i

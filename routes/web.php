@@ -88,12 +88,38 @@ Route::middleware('is.customer')->group(function () {
     Route::get('cart', [OrderController::class, 'viewCart'])->name('order.cart');
     Route::post('cart/update/{id}', [OrderController::class, 'updateCart'])->name('order.updateCart');
     Route::post('remove/{id}', [OrderController::class, 'removeFromCart'])->name('order.remove');
+    // Route::post('cart/update/{id}', [OrderController::class, 'updateCart'])->name('order.updateCart');
+    // Route::post('remove/{id}', [OrderController::class, 'removeFromCart'])->name('order.remove');
 
     // Ongkir
     Route::post('select-shipping', [OrderController::class, 'selectShipping'])->name('order.selectShipping');
+    Route::get('select-shipping', [OrderController::class, 'selectShipping'])->name('order.selectShipping.get');
     Route::get('provinces', [OrderController::class, 'getProvinces']);
     Route::get('cities', [OrderController::class, 'getCities']);
     Route::post('cost', [OrderController::class, 'getCost']);
-    Route::post('updateongkir', [OrderController::class, 'updateongkir'])->name('order.updateongkir');
+    Route::post('update-ongkir', [OrderController::class, 'updateOngkir'])->name('order.update-ongkir');
+    Route::post('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
 
+    // midtrans
+    Route::post('/midtrans-callback', [OrderController::class, 'callback']); 
+    Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete'); 
+
+    // Route history 
+    Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history'); 
+    Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice'); 
 });
+
+// cek ongkir
+Route::get('/list-ongkir', function () { 
+    $response = Http::withHeaders([ 
+        'key' => '794a5d197b9cb469ae958ed043ccf921' ])->get('https://api.rajaongkir.com/starter/province'); //ganti 'province' atau 'city' 
+    dd($response->json()); 
+});
+
+Route::get('/cek-ongkir', function () { 
+    return view('ongkir'); 
+}); 
+ 
+Route::get('/provinces', [RajaOngkirController::class, 'getProvinces']); 
+Route::get('/cities', [RajaOngkirController::class, 'getCities']); 
+Route::post('/cost', [RajaOngkirController::class, 'getCost']); 

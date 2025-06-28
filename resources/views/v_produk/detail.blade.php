@@ -64,7 +64,7 @@
                     </div>
 
                     <div class="product-btns">
-                        <form action="#" method="post" style="display: inline-block;">
+                        <form action="/add-to-cart/{{ $row->id }}" method="post" style="display: inline-block;">
                             @csrf
                             <button type="submit" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i>
                                 Pesan</button>
