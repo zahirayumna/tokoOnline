@@ -37,9 +37,9 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" 
-        data-client-key="{{ config('midtrans.client_key') }}"> 
-    </script> 
+    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('midtrans.client_key') }}">
+        </script>
 
 
 </head>
@@ -147,6 +147,7 @@
             <div id="responsive-nav">
                 @php
                     $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get();
+                    $topproduk = DB::table('produk')->orderBy('created_at', 'desc')->get();
                 @endphp
                 @if (request()->segment(1) == '' || request()->segment(1) == 'beranda')
                     <!-- category nav -->
@@ -251,44 +252,28 @@
                 <div id="aside" class="col-md-3">
                     <!-- aside widget -->
                     <div class="aside">
-                        <h3 class="aside-title">Top Rated Product</h3>
+                        <h3 class="aside-title">Newest Product</h3>
                         <!-- widget product -->
-                        <div class="product product-widget">
-                            <div class="product-thumb">
-                                <img src="{{ asset('frontend/img/thumb-product01.jpg') }}" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
+                        @foreach ($topproduk as $top)
+                            <div class="product product-widget">
+                                <div class="product-thumb">
+                                    <img src="{{ asset('storage/img-produk/thumb_md_' . $top->foto) }}" alt="">
+                                </div>
+                                <div class="product-body">
+                                    <h2 class="product-name"><a href="#">{{ $top->nama_produk }}</a></h2>
+                                    <h3 class="product-price">Rp. {{ number_format($top->harga, 0, ',', '.') }}</h3>
+                                    <div class="product-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-o empty"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                         <!-- /widget product -->
 
-                        <!-- widget product -->
-                        <div class="product product-widget">
-                            <div class="product-thumb">
-                                <img src="{{ asset('frontend/img/thumb-product01.jpg') }}" alt="">
-                            </div>
-                            <div class="product-body">
-                                <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                <h3 class="product-price">$32.50</h3>
-                                <div class="product-rating">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-o empty"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /widget product -->
                     </div>
                     <!-- /aside widget -->
                     <!-- aside widget -->
@@ -296,18 +281,19 @@
                         <h3 class="aside-title">Filter by Kategori</h3>
                         <ul class="list-links">
                             @foreach ($kategori as $row)
-                            @if(isset($id_kategori))
-                                @if ($id_kategori == $row->id)
-                                    <li class="active"><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
-                                    </li>
-                                @else 
+                                @if(isset($id_kategori))
+                                    @if ($id_kategori == $row->id)
+                                        <li class="active"><a
+                                                href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                        </li>
+                                    @else
+                                        <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                        </li>
+                                    @endif
+                                @else
                                     <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
                                     </li>
                                 @endif
-                            @else 
-                                <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
-                                </li>
-                            @endif
                             @endforeach
                         </ul>
                     </div>
@@ -426,9 +412,8 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i
-                            class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                     <!-- /footer copyright -->

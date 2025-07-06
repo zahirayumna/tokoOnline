@@ -76,7 +76,7 @@
                                             @csrf
                                             <button class="main-btn icon-btn"><i class="fa fa-close"></i></button>
                                         </form>
-                                    </td>
+                                    </td>   
                                 </tr>
                         @endforeach
                     </tbody>
