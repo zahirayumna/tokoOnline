@@ -25,7 +25,7 @@ Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 
 // Route untuk anggota
-Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+// Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
 
 
 // Route unruk laporan user
