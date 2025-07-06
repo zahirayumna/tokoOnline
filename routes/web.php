@@ -98,7 +98,7 @@ Route::middleware('is.customer')->group(function () {
     Route::get('cities', [OrderController::class, 'getCities']);
     Route::post('cost', [OrderController::class, 'getCost']);
     Route::post('update-ongkir', [OrderController::class, 'updateOngkir'])->name('order.update-ongkir');
-    Route::post('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
+    Route::get('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
 
     // midtrans
     Route::post('/midtrans-callback', [OrderController::class, 'callback']); 

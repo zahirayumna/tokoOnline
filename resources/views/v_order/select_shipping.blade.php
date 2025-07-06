@@ -64,7 +64,7 @@
         </div> 
         <form id="shippingForm"> 
             <!-- Kota Asal --> 
-            <input type="hidden" name="origin" value="${origin}"> 
+            <input type="hidden" id="city_origin" name="origin" value="${origin}"> 
             <input type="hidden" id="city_origin_name" name="originName" value="${originName}"> 
             <!-- /Kota Asal --> 
  

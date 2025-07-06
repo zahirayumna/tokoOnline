@@ -50,26 +50,26 @@ class OrderController extends Controller
         return view('v_order.cart', compact('order'));
     }
 
-    public function updateCart(Request $request, $id) 
-    { 
+    public function updateCart(Request $request, $id)
+    {
         $customer = Customer::where('user_id', Auth::id())->first();
-        $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->first(); 
-        if ($order) { 
-            $orderItem = $order->orderItems()->where('id', $id)->first(); 
-            if ($orderItem) { 
-                $quantity = $request->input('quantity'); 
-                if ($quantity > $orderItem->produk->stok) { 
-                    return redirect()->route('order.cart')->with('error', 'Jumlah produk melebihi stok yang tersedia'); 
-                } 
-                $order->total_harga -= $orderItem->harga * $orderItem->quantity; 
-                $orderItem->quantity = $quantity; 
-                $orderItem->save(); 
-                $order->total_harga += $orderItem->harga * $orderItem->quantity; 
-                $order->save(); 
-            } 
-        } 
-        return redirect()->route('order.cart')->with('success', 'Jumlah produk berhasil diperbarui'); 
-    } 
+        $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->first();
+        if ($order) {
+            $orderItem = $order->orderItems()->where('id', $id)->first();
+            if ($orderItem) {
+                $quantity = $request->input('quantity');
+                if ($quantity > $orderItem->produk->stok) {
+                    return redirect()->route('order.cart')->with('error', 'Jumlah produk melebihi stok yang tersedia');
+                }
+                $order->total_harga -= $orderItem->harga * $orderItem->quantity;
+                $orderItem->quantity = $quantity;
+                $orderItem->save();
+                $order->total_harga += $orderItem->harga * $orderItem->quantity;
+                $order->save();
+            }
+        }
+        return redirect()->route('order.cart')->with('success', 'Jumlah produk berhasil diperbarui');
+    }
 
     public function removeFromCart(Request $request, $id)
     {
@@ -106,6 +106,10 @@ class OrderController extends Controller
     {
         $customer = Customer::where('user_id', Auth::id())->first();
         $order = Order::where('customer_id', $customer->id)->where('status', 'pending')->first();
+
+        $origin = $request->input('city_origin'); // kode kota asal
+        $originName = $request->input('city_origin_name'); // nama kota asal
+        
         if ($order) {
             // Simpan data ongkir ke dalam order
             $order->kurir = $request->input('kurir');
@@ -192,46 +196,48 @@ class OrderController extends Controller
     }
 
     public function complete() // Untuk kondisi local 
-    { 
+    {
         // Dapatkan customer yang login 
-        $customer = Auth::user(); 
- 
+        $customer = Auth::user();
+
         // Cari order dengan status 'pending' milik customer tersebut 
-        $order = Order::where('customer_id', $customer->customer->id) 
-            ->where('status', 'pending') 
-            ->first(); 
- 
-        if ($order) { 
+        $order = Order::where('customer_id', $customer->customer->id)
+            ->where('status', 'pending')
+            ->first();
+
+        if ($order) {
             // Update status order menjadi 'Paid' 
-            $order->status = 'Paid'; 
-            $order->save(); 
-        } 
- 
+            $order->status = 'Paid';
+            $order->save();
+        }
+
         // Redirect ke halaman riwayat dengan pesan sukses 
-        return redirect()->route('order.history')->with('success', 'Checkout berhasil'); 
+        return redirect()->route('order.history')->with('success', 'Checkout berhasil');
     }
 
-    public function orderHistory() 
-    { 
-        $customer = Customer::where('user_id', Auth::id())->first();;; 
-        $statuses = ['Paid', 'Kirim', 'Selesai']; 
-        $orders = Order::where('customer_id', $customer->id) 
-            ->whereIn('status', $statuses) 
-            ->orderBy('id', 'desc') 
-            ->get(); 
-        return view('v_order.history', compact('orders')); 
-    } 
+    public function orderHistory()
+    {
+        $customer = Customer::where('user_id', Auth::id())->first();
+        ;
+        ;
+        $statuses = ['Paid', 'Kirim', 'Selesai'];
+        $orders = Order::where('customer_id', $customer->id)
+            ->whereIn('status', $statuses)
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('v_order.history', compact('orders'));
+    }
 
-    public function invoiceFrontend($id) 
-    { 
-        $order = Order::findOrFail($id); 
-        return view('backend.v_pesanan.invoice', [ 
-            'judul' => 'Pesanan', 
-            'subJudul' => 'Pesanan Proses', 
-            'judul' => 'Data Transaksi', 
-            'order' => $order, 
-        ]); 
-    } 
+    public function invoiceFrontend($id)
+    {
+        $order = Order::findOrFail($id);
+        return view('backend.v_pesanan.invoice', [
+            'judul' => 'Pesanan',
+            'subJudul' => 'Pesanan Proses',
+            'judul' => 'Data Transaksi',
+            'order' => $order,
+        ]);
+    }
 
     // kirim data order dan snaptoken ke view
     //     return view('v_order.select_payment', [
