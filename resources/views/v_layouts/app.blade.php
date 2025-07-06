@@ -181,8 +181,8 @@
                     <ul class="menu-list">
                         <li><a href="{{ route('beranda') }}">Beranda</a></li>
                         <li><a href="{{ route('produk.all') }}">Produk</a></li>
-                        <li><a href="">Lokasi</a></li>
-                        <li><a href="">Hubungi Kami</a></li>
+                        <li><a href="{{ route('location') }}">Lokasi</a></li>
+                        <li><a href="{{ route('contactus') }}">Hubungi Kami</a></li>
                     </ul>
                 </div>
                 <!-- menu nav -->

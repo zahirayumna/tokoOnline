@@ -7,6 +7,7 @@ use App\Http\Controllers\HtmlController;
 use App\Http\Controllers\LatihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
@@ -85,6 +86,8 @@ Route::post('backend/laporan/cetakproduk', [ProdukController::class, 'cetakProdu
 
 // frontend
 Route::get('/beranda', [BerandaController::class, 'index'])->name('beranda');
+Route::get('/contactus', [ContactUsController::class, 'index'])->name('contactus');
+Route::get('/lokasi', [ContactUsController::class, 'location'])->name('location');
 
 // API 
 use App\Http\Controllers\CustomerController;
