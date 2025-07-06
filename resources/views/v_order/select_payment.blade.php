@@ -98,7 +98,7 @@
     payButton.addEventListener('click', function() { 
         window.snap.pay('{{ $snapToken }}', {
             onSuccess: function(result) {
-                alert("payment success!") {
+                alert("payment success!") 
                     console.log(result);
                     window.location.href = "{{ route('order.complete') }}";
                 },
@@ -109,12 +109,12 @@
                 onError: function(result) {
                     alert("payment failed!");
                     console.log(result);
-                }
+                },
                 onClose: function() {
                     alert('you closed the popup without finishing the payment');
                 }
             }
-        });
+        );
     });
 </script>
 

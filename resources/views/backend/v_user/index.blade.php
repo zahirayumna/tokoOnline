@@ -3,14 +3,14 @@
     <!-- contentAwal -->
     <div class="row">
         <div class="col-12">
-            <a href="{{ route('backend.user.create') }}">
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus"></i>
-                    Tambah</button>
-            </a>
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title"> {{ $judul }} </h5>
-                    <div class="table-responsive">
+                    <a href="{{ route('backend.user.create') }}">
+                        <button type="button" class="btn btn-success"><i class="fas fa-plus"></i>
+                            Tambah</button>
+                    </a>
+                    <div class="table-responsive mt-3">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
                                 <tr>
@@ -49,16 +49,17 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('backend.user.edit', $row->id) }}" title="Ubah Data">
-                                                <button type="button" class="btn btn-cyan btn-sm"><i
-                                                        class="far fa-edit"></i> Ubah</button>
+                                                <button type="button" class="btn btn-cyan btn-sm"><i class="far fa-edit"></i>
+                                                    Ubah</button>
                                             </a>
                                             <form method="POST" action="{{ route('backend.user.destroy', $row->id) }}" style="display:
-                                                inline-block;">
+                                                                inline-block;">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm show_confirm" data-konf-delete="{{$row->nama }}" title='Hapus Data'>
-                                                <i class="fas fa-trash"></i> Hapus</button>
-                                                </form>
+                                                <button type="submit" class="btn btn-danger btn-sm show_confirm"
+                                                    data-konf-delete="{{$row->nama }}" title='Hapus Data'>
+                                                    <i class="fas fa-trash"></i> Hapus</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

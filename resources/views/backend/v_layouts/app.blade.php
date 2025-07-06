@@ -20,7 +20,7 @@
     <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]-->    
 </head>
 
 <body>
@@ -225,23 +225,23 @@ waves-dark sidebar-link"
                             <li class="sidebar-item"><a href="{{ route('anggota.index') }}"
                                 class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hidemenu">CRUD Anggota </span></a>
                                 </li>
-                                <li class="sidebar-item"><a href="{{ ('/helloworld') }}" 
+                                <li class="sidebar-item"><a href="{{ route('helloworld') }}" 
                                     class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Hello World </span></a>
                                         </li>
                                     </li>
-                            <li class="sidebar-item"><a href="{{ ('ambilfile') }}" 
-                                    class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Ambilfile </span></a>
+                            <li class="sidebar-item"><a href="{{ route('ambilfile') }}" 
+                                    class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Ambil File </span></a>
                                         </li>
-                            <li class="sidebar-item"><a href="{{ ('getlorem') }}" 
-                            class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Getlorem </span></a>
+                            <li class="sidebar-item"><a href="{{ route('getlorem') }}" 
+                            class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Get Lorem </span></a>
                                 </li>
                             </li>
-                            <li class="sidebar-item"><a href="{{ ('getTabel') }}" 
-                                class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> GetTabel </span></a>
+                            <li class="sidebar-item"><a href="{{ route('getTabel') }}" 
+                                class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Get Tabel </span></a>
                                     </li>
                                 </li>
-                                <li class="sidebar-item"><a href="{{ ('getForm') }}" 
-                                    class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> GetForm </span></a>
+                                <li class="sidebar-item"><a href="{{ route('getForm') }}" 
+                                    class="sidebar-link"><i class="mdi mdi-chevron-right"></i><span class="hide-menu"> Get Form </span></a>
                                         </li>
                                     </li>
                                 

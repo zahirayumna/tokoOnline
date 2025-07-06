@@ -66,7 +66,7 @@
                                             @csrf
                                             <input type="number" name="quantity" value="{{ $item->quantity}}" min="1"
                                                 style="width: 60px;">
-                                            <button type="submit" class="btn btn-sm btnwarning">Update</button>
+                                            <button type="submit" class="btn btn-sm btn-warning">Update</button>
                                         </form>
                                     </td>
                                     <td class="total text-center"><strong class="primary-color">Rp.

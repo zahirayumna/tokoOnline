@@ -296,8 +296,18 @@
                         <h3 class="aside-title">Filter by Kategori</h3>
                         <ul class="list-links">
                             @foreach ($kategori as $row)
+                            @if(isset($id_kategori))
+                                @if ($id_kategori == $row->id)
+                                    <li class="active"><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                    </li>
+                                @else 
+                                    <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
+                                    </li>
+                                @endif
+                            @else 
                                 <li><a href="{{ route('produk.kategori', $row->id) }}">{{ $row->nama_kategori }}</a>
                                 </li>
+                            @endif
                             @endforeach
                         </ul>
                     </div>

@@ -7,7 +7,7 @@ use App\Models\Anggota;
 
 
 class AnggotaController extends Controller
-{
+{   
     /**
      * Display a listing of the resource.
      */
@@ -37,10 +37,7 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        // Debugging request data
-        // dd($request);
-        // atau untuk lebih banyak informasi debugging
-        // ddd($request);
+
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'hp' => 'required|min:10|max:13',

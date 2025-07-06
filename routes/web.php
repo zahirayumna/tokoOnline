@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\HelloWorldController;
+use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\HtmlController;
+use App\Http\Controllers\LatihanController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\LoginController;
@@ -17,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('backend/beranda', [BerandaController::class, 'berandaBackend'])->name('backend.beranda')->middleware('auth');
 
+Route::get('backend', [LoginController::class, 'loginBackend'])->name('backend.login');
 Route::get('backend/login', [LoginController::class, 'loginBackend'])->name('backend.login');
 Route::post('backend/login', [LoginController::class, 'authenticateBackend'])->name('backend.login');
 Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('backend.logout');
@@ -24,8 +30,32 @@ Route::post('backend/logout', [LoginController::class, 'logoutBackend'])->name('
 // Route untuk user
 Route::resource('backend/user', UserController::class, ['as' => 'backend'])->middleware('auth');
 
-// Route untuk anggota
-Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+//Route Reset Password
+
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendResetLinkEmail'])->name('resetpass.request')->middleware('guest');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+Route::middleware(['auth'])->group(function () {
+    // Route untuk anggota
+    Route::get('/anggota', [AnggotaController::class, 'index'])->name('anggota.index');
+    Route::get('anggota/create', [AnggotaController::class, 'create'])->name('anggota.create');
+    Route::get('anggota/edit/{id}', [AnggotaController::class, 'edit'])->name('anggota.edit');
+    Route::post('anggota/update/{id}', [AnggotaController::class, 'update'])->name('anggota.update');
+    Route::post('anggota/store', [AnggotaController::class, 'store'])->name('anggota.store');
+    Route::delete('anggota/destroy/{id}', [AnggotaController::class, 'destroy'])->name('anggota.destroy');
+
+    // Route Helloworld
+    Route::get('helloworld', [HelloWorldController::class, 'index'])->name('helloworld');
+    Route::get('ambilfile', [HelloWorldController::class, 'ambilfile'])->name('ambilfile');
+
+    // Route HTML
+    Route::get('getlorem', [HtmlController::class, 'getlorem'])->name('getlorem');
+
+    // Route Latihan
+    Route::get('getTabel', [LatihanController::class, 'getTabel'])->name('getTabel');
+    Route::get('getForm', [LatihanController::class, 'getForm'])->name('getForm');
+});
 
 
 // Route unruk laporan user
@@ -84,6 +114,7 @@ Route::middleware('is.customer')->group(function () {
         ->name('customer.akun.update');
 
     // Route untuk menambahkan produk ke keranjang 
+    Route::get('add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('order.addToCart');
     Route::post('add-to-cart/{id}', [OrderController::class, 'addToCart'])->name('order.addToCart');
     Route::get('cart', [OrderController::class, 'viewCart'])->name('order.cart');
     Route::post('cart/update/{id}', [OrderController::class, 'updateCart'])->name('order.updateCart');
@@ -98,28 +129,29 @@ Route::middleware('is.customer')->group(function () {
     Route::get('cities', [OrderController::class, 'getCities']);
     Route::post('cost', [OrderController::class, 'getCost']);
     Route::post('update-ongkir', [OrderController::class, 'updateOngkir'])->name('order.update-ongkir');
-    Route::post('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
+    Route::get('select-payment', [OrderController::class, 'selectPayment'])->name('order.selectpayment');
 
     // midtrans
-    Route::post('/midtrans-callback', [OrderController::class, 'callback']); 
-    Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete'); 
+    Route::post('/midtrans-callback', [OrderController::class, 'callback']);
+    Route::get('/order/complete', [OrderController::class, 'complete'])->name('order.complete');
 
     // Route history 
-    Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history'); 
-    Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice'); 
+    Route::get('history', [OrderController::class, 'orderHistory'])->name('order.history');
+    Route::get('order/invoice/{id}', [OrderController::class, 'invoiceFrontend'])->name('order.invoice');
 });
 
 // cek ongkir
-Route::get('/list-ongkir', function () { 
-    $response = Http::withHeaders([ 
-        'key' => '794a5d197b9cb469ae958ed043ccf921' ])->get('https://api.rajaongkir.com/starter/province'); //ganti 'province' atau 'city' 
-    dd($response->json()); 
+Route::get('/list-ongkir', function () {
+    $response = Http::withHeaders([
+        'key' => '794a5d197b9cb469ae958ed043ccf921'
+    ])->get('https://api.rajaongkir.com/starter/province'); //ganti 'province' atau 'city' 
+    dd($response->json());
 });
 
-Route::get('/cek-ongkir', function () { 
-    return view('ongkir'); 
-}); 
- 
-Route::get('/provinces', [RajaOngkirController::class, 'getProvinces']); 
-Route::get('/cities', [RajaOngkirController::class, 'getCities']); 
-Route::post('/cost', [RajaOngkirController::class, 'getCost']); 
+Route::get('/cek-ongkir', function () {
+    return view('ongkir');
+});
+
+Route::get('/provinces', [RajaOngkirController::class, 'getProvinces']);
+Route::get('/cities', [RajaOngkirController::class, 'getCities']);
+Route::post('/cost', [RajaOngkirController::class, 'getCost']);

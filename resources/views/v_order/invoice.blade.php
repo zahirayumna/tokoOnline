@@ -19,7 +19,7 @@
 <table>
     <tr>
         <td align="left">
-            <img src="{{ asset('image/logo.png') }}" width="8%">
+            <img src="{{ asset('image/logo-ubsi.png') }}" width="5%">
         </td>
     </tr>
     <tr>

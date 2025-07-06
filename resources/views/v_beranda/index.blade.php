@@ -46,6 +46,11 @@
             @endforeach
             <div class="clearfix visible-md visible-lg visible-sm visible-xs"></div>
         </div>
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $produk->links() }}
+        </div>
+        <!-- /Pagination -->
         <!-- /row -->
     </div>
     <!-- /STORE -->

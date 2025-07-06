@@ -12,7 +12,7 @@
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <select name="kategori_id" class="form-control
-                                            @error('kategori_id') is-invalid @enderror" disabled>
+                                                @error('kategori_id') is-invalid @enderror" disabled>
                                         <option value="" selected> - Pilih Kategori - </option>
                                         @foreach ($kategori as $row)
                                             <option value="{{ $row->id }}" {{ old('kategori_id', $show->kategori_id) == $row->id ? 'selected' : '' }}>
@@ -81,7 +81,7 @@
                     <div class="border-top">
                         <div class="card-body">
                             <a href="{{ route('backend.produk.index') }}">
-                                <button type="button" class="btn btnsecondary">Kembali</button>
+                                <button type="button" class="btn btn-secondary">Kembali</button>
                             </a>
                         </div>
                     </div>
@@ -107,7 +107,7 @@ enctype="multipart/form-data">
 <input type="hidden" name="produk_id" value="{{ $show->id }}">
 <input type="file" name="foto_produk[]" class="form-control
 @error('foto_produk') is-invalid @enderror">
-<button type="submit" class="btn btn-success">Simpan</button>
+<button type="submit" class="btn btn-success mt-2">Simpan</button>
 </div>
 </form>
 `;
