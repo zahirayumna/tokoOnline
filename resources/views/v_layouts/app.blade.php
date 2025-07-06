@@ -147,7 +147,7 @@
             <div id="responsive-nav">
                 @php
                     $kategori = DB::table('kategori')->orderBy('nama_kategori', 'asc')->get();
-                    $topproduk = DB::table('produk')->orderBy('created_at', 'desc')->get();
+                    $topproduk = DB::table('produk')->orderBy('created_at', 'desc')->where('status', 1)->limit(4)->get();
                 @endphp
                 @if (request()->segment(1) == '' || request()->segment(1) == 'beranda')
                     <!-- category nav -->
